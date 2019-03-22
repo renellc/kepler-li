@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "LandingPage",
+  name: "Landing",
   props: {
     message: String
   }

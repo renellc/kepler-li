@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <LandingPage message="Hello from Landing Page!"></LandingPage>
+    <Landing message="Hello from Landing Page!"></Landing>
   </div>
 </template>
 
 <script>
-import LandingPage from './components/LandingPage';
+import Landing from './components/Landing';
 
 export default {
   name: 'app',
   components: {
-    LandingPage
+    Landing
   }
 }
 </script>
