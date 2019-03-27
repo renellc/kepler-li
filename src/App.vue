@@ -7,17 +7,16 @@
 </template>
 
 <script>
-import Stars from './components/Stars'
-
+import Stars from "./views/Stars";
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Stars
   },
-  data () {
+  data() {
     return {
       //
-    }
+    };
   }
-}
+};
 </script>
