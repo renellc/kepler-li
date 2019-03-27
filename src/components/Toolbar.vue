@@ -7,10 +7,16 @@
     <v-spacer></v-spacer>
     <v-toolbar-items>
       <template v-if="windowDim.width >= 425">
-        <v-btn flat>
+        
+        <v-btn 
+          flat
+          to="/about"
+          >
           <v-icon>info</v-icon>&nbsp;About
         </v-btn>
-        <v-btn flat>
+        <v-btn 
+          flat
+          >
           <v-icon>link</v-icon>&nbsp;Links
         </v-btn>
       </template>
@@ -28,7 +34,7 @@
 
 <script>
 export default {
-  name: "StarsToolbar",
+  name: "Toolbar",
   data() {
     return {
       windowDim: {

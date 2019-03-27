@@ -1,5 +1,18 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <v-content>
+    <Toolbar/>
+    <h1>About Page</h1>
+  </v-content>
 </template>
+
+<script>
+import Toolbar from '@/components/Toolbar';
+
+export default {
+  name: 'About',
+  components: {
+    Toolbar
+  }
+}
+</script>
+

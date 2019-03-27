@@ -1,19 +1,19 @@
 <template>
   <v-content>
-    <StarsToolbar/>
+    <Toolbar/>
     <Stars/>
   </v-content>
 </template>
 
 <script>
 import Stars from '@/components/Stars';
-import StarsToolbar from '@/components/StarsToolbar';
+import Toolbar from '@/components/Toolbar';
 
 export default {
   name: 'stars',
   components: {
     Stars,
-    StarsToolbar
+    Toolbar
   }
 }
 </script>
