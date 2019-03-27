@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import About from './views/About.vue';
-import Stars from './views/Stars.vue';
+import about from './views/About.vue';
+import stars from './views/Stars.vue';
 
 Vue.use(Router)
 
@@ -10,12 +10,12 @@ export default new Router({
     {
       path: '/stars',
       name: 'stars',
-      component: Stars
+      component: stars
     },
     {
       path: '/about',
       name: 'about',
-      component: About
+      component: about
     }
   ],
   mode: 'history'
