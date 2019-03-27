@@ -5,6 +5,7 @@
       class="headline text-uppercase" 
       @mouseover="mouseOver()" 
       @click="pushPage('/')"
+      v-touch:tap="pushPage('/')"
     >
       <span>Kepler</span>
       <span class="font-weight-light">li</span>
@@ -14,7 +15,7 @@
 
     <v-toolbar-items>
       <template v-if="windowDim.width >= 425">
-        <v-btn flat @click="pushPage('/about')">
+        <v-btn flat @click="pushPage('/about')" v-touch:tap="pushPage('/about')">
           <v-icon>info</v-icon>&nbsp;About
         </v-btn>
         <v-btn flat>
@@ -23,14 +24,14 @@
       </template>
 
       <template v-else>
-        <v-btn icon flat>
+        <v-btn icon flat @click="pushPage('/about')" v-touch:tap="pushPage('/about')">
           <v-icon>info</v-icon>
         </v-btn>
         <v-btn icon flat>
           <v-icon>link</v-icon>
         </v-btn>
       </template>
-      
+
     </v-toolbar-items>
   </v-toolbar>
 </template>
