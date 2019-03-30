@@ -1,14 +1,14 @@
 <template>
-  <v-content>
+  <div>
     <h1>Stars</h1>
-  </v-content>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'Stars',
+  name: "Stars",
   mounted() {
-    fetch('https://api-keplerli.herokuapp.com/api/stars')
+    fetch("https://api-keplerli.herokuapp.com/api/stars")
       .then(function(response) {
         return response.json();
       })
@@ -16,5 +16,5 @@ export default {
         console.log(data);
       });
   }
-}
+};
 </script>

@@ -1,12 +1,14 @@
 <template>
   <v-app>
-    <Toolbar />
-    <router-view/>
+    <Toolbar/>
+    <v-content>
+      <router-view/>
+    </v-content>
   </v-app>
 </template>
 
 <script>
-import Toolbar from '@/components/Toolbar';
+import Toolbar from "@/components/Toolbar";
 
 export default {
   name: "App",

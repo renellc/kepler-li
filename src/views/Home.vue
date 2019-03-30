@@ -1,8 +1,8 @@
 <template>
-  <v-content>
+  <div>
     <h1>Home</h1>
     <v-btn @click="pushPage('/stars')">Stars</v-btn>
-  </v-content>
+  </div>
 </template>
 
 <script>
