@@ -1,28 +1,26 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import home from './views/Home.vue';
-import about from './views/About.vue';
-import stars from './views/Stars.vue';
+import Home from '@/views/Home.vue';
+import Stars from '@/views/Stars.vue';
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
+    {
+      path: '*',
+      redirect: '/',
+    },
     {
       path: '/',
       name: 'home',
-      component: home
+      component: Home,
     },
     {
       path: '/stars',
       name: 'stars',
-      component: stars
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: about
+      component: Stars,
     }
   ],
-  mode: 'history'
 })
