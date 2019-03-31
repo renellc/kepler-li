@@ -1,8 +1,10 @@
 <template>
-  <v-container grid-list-md text-xs-center>
+  <v-container grid-list-md>
     <v-layout row wrap>
-      <v-flex v-for="(star, i) in starData" v-bind:key="i" xs6>
-        <StarDisplay v-bind:starData="star"/>
+      <v-flex v-for="(star, i) in starData" :key="i" xs6>
+        <v-hover>
+          <StarDisplay :starData="star" :class="`elevation-${hover ? 12 : 5}`" slot-scope="{ hover }"/>
+        </v-hover>
       </v-flex>
     </v-layout>
   </v-container>
