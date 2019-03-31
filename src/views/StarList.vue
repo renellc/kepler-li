@@ -1,6 +1,27 @@
 <template>
   <v-container grid-list-md>
     <v-layout v-resize="onWindowResize" column>
+      <v-flex text-xs-right xs4>
+        <v-menu transition="slide-y-transition">
+          <template v-slot:activator="{ on }">
+            <v-btn flat icon v-on="on">
+              <v-icon>filter_list</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-tile>
+              <v-list-tile-title>Range</v-list-tile-title>
+            </v-list-tile>
+            <v-list-tile>
+              <v-list-tile-title>Mean L.I.</v-list-tile-title>
+            </v-list-tile>
+            <v-list-tile>
+              <v-list-tile-title>Std. Dev</v-list-tile-title>
+            </v-list-tile>
+          </v-list>
+        </v-menu>
+      </v-flex>
+
       <v-flex
         v-for="star in starData"
         :key="star.starid"
@@ -16,6 +37,7 @@
           />
         </v-hover>
       </v-flex>
+
       <v-flex text-xs-center xs4>
         <v-btn color="primary" @click="getStarData">Load Next</v-btn>
       </v-flex>
