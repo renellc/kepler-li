@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <h1>StarList</h1>
+  <div v-if="gotData">
     <StarDisplay
-      v-if="gotData"
-      v-bind:starData="starData[0]"
+      v-for="(star, i) in starData"
+      v-bind:key="i"
+      v-bind:starData="star"
     />
   </div>
 </template>
