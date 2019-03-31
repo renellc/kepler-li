@@ -9,14 +9,8 @@
             </v-btn>
           </template>
           <v-list>
-            <v-list-tile>
-              <v-list-tile-title>Range</v-list-tile-title>
-            </v-list-tile>
-            <v-list-tile>
-              <v-list-tile-title>Mean L.I.</v-list-tile-title>
-            </v-list-tile>
-            <v-list-tile>
-              <v-list-tile-title>Std. Dev</v-list-tile-title>
+            <v-list-tile v-for="(sortOption, i) in sortOptions" :key="i" @click="changeSortBy(sortOption.option)">
+              <v-list-tile-title>{{ sortOption.title }}</v-list-tile-title>
             </v-list-tile>
           </v-list>
         </v-menu>
@@ -39,7 +33,7 @@
       </v-flex>
 
       <v-flex text-xs-center xs4>
-        <v-btn color="primary" @click="getStarData">Load Next</v-btn>
+        <v-btn color="primary" @click="getStarData" ref="loadStars">Load Next</v-btn>
       </v-flex>
     </v-layout>
   </v-container>
@@ -56,9 +50,16 @@ export default {
   data() {
     return {
       starData: [],
+      sortOptions: [
+        {title: 'Default', option: 'starid'},
+        {title: 'Range', option: 'range'},
+        {title: 'Std. Deviation', option: 'std'},
+        {title: 'Possible Planets', option: 'haspossibleexoplanets'},
+      ],
       gotData: false,
       windowWidth: window.innerWidth,
-      dataOffset: 0
+      dataOffset: 0,
+      sortBy: 'starid'
     };
   },
   created() {
@@ -69,7 +70,7 @@ export default {
   },
   methods: {
     getStarData: function() {
-      fetch("http://localhost:4000/api/stars?offset=" + this.dataOffset, {
+      fetch("http://localhost:4000/api/stars?sort=" + this.sortBy + "&offset=" + this.dataOffset, {
         cache: "force-cache"
       })
         .then(response => {
@@ -83,7 +84,13 @@ export default {
     },
     onWindowResize: function() {
       this.windowWidth = window.innerWidth;
-    }
+    },
+    changeSortBy: function(sortBy) {
+      this.sortBy = sortBy;
+      this.dataOffset = 0;
+      this.gotData = false;
+      this.starData = [];
+    },
   }
 };
 </script>
