@@ -1,11 +1,11 @@
 <template>
-  <div v-if="gotData">
-    <StarDisplay
-      v-for="(star, i) in starData"
-      v-bind:key="i"
-      v-bind:starData="star"
-    />
-  </div>
+  <v-container grid-list-md text-xs-center>
+    <v-layout row wrap>
+      <v-flex v-for="(star, i) in starData" v-bind:key="i" xs6>
+        <StarDisplay v-bind:starData="star"/>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -19,22 +19,22 @@ export default {
   data() {
     return {
       starData: null,
-      gotData: false,
+      gotData: false
     };
   },
   created() {
     this.getStarData();
   },
   watch: {
-    '$route': 'getStarData'
+    $route: "getStarData"
   },
   methods: {
     getStarData: function() {
       fetch("http://localhost:4000/api/stars")
-        .then((response) => {
+        .then(response => {
           return response.json();
         })
-        .then((data) => {
+        .then(data => {
           this.starData = data;
           this.gotData = true;
         });
