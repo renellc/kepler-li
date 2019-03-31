@@ -1,6 +1,7 @@
 <template>
   <v-container grid-list-md>
     <v-layout v-resize="onWindowResize" column>
+      <!-- The filter options menu -->
       <v-flex text-xs-right xs4>
         <v-menu transition="slide-y-transition">
           <template v-slot:activator="{ on }">
@@ -8,14 +9,22 @@
               <v-icon>filter_list</v-icon>
             </v-btn>
           </template>
+
           <v-list>
-            <v-list-tile v-for="(sortOption, i) in sortOptions" :key="i" @click="changeSortBy(sortOption.option)">
+            <!-- Each option within the filter options menu. Each option is binded to a click event
+            that changes the sorting of the stars associated with the option. -->
+            <v-list-tile
+              v-for="(sortOption, i) in sortOptions"
+              :key="i"
+              @click="changeSortBy(sortOption.option)"
+            >
               <v-list-tile-title>{{ sortOption.title }}</v-list-tile-title>
             </v-list-tile>
           </v-list>
         </v-menu>
       </v-flex>
 
+      <!-- Loads in the StarDisplay components populated with star data. -->
       <v-flex
         v-for="star in starData"
         :key="star.starid"
@@ -32,6 +41,7 @@
         </v-hover>
       </v-flex>
 
+      <!-- The button that loads the next 10 stars. -->
       <v-flex text-xs-center xs4>
         <v-btn color="primary" @click="getStarData" ref="loadStars">Load Next</v-btn>
       </v-flex>
@@ -49,17 +59,28 @@ export default {
   },
   data() {
     return {
+      /** 
+       * The array that will hold the stars' data in. Each object has the following schema:
+       * {
+       *   haspossibleexoplanets: boolean,
+       *   max: float,
+       *   min: float,
+       *   simplified: Array<float>,
+       *   starid: int,
+       *   std: float
+       * }
+       */
       starData: [],
       sortOptions: [
-        {title: 'Default', option: 'starid'},
-        {title: 'Range', option: 'range'},
-        {title: 'Std. Deviation', option: 'std'},
-        {title: 'Possible Planets', option: 'haspossibleexoplanets'},
+        { title: "Default", option: "starid" },
+        { title: "Range", option: "range" },
+        { title: "Std. Deviation", option: "std" },
+        { title: "Possible Planets", option: "haspossibleexoplanets" }
       ],
       gotData: false,
       windowWidth: window.innerWidth,
       dataOffset: 0,
-      sortBy: 'starid'
+      sortBy: "starid"
     };
   },
   created() {
@@ -70,9 +91,15 @@ export default {
   },
   methods: {
     getStarData: function() {
-      fetch("http://localhost:4000/api/stars?sort=" + this.sortBy + "&offset=" + this.dataOffset, {
-        cache: "force-cache"
-      })
+      fetch(
+        "http://localhost:4000/api/stars?sort=" +
+          this.sortBy +
+          "&offset=" +
+          this.dataOffset,
+        {
+          cache: "force-cache"
+        }
+      )
         .then(response => {
           return response.json();
         })
@@ -90,7 +117,7 @@ export default {
       this.dataOffset = 0;
       this.gotData = false;
       this.starData = [];
-    },
+    }
   }
 };
 </script>
