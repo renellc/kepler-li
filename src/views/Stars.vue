@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     getStarData: function() {
-      fetch("https://api-keplerli.herokuapp.com/api/stars")
+      fetch("http://localhost:4000/api/stars")
         .then((response) => {
           return response.json();
         })

@@ -1,10 +1,10 @@
 <template>
   <div>
-    This is star {{ starData.starId }}.<br/>
-    Has exoplanets?: {{ starData.hasPossibleExoplanets }}<br/>
+    This is star {{ starData.starid }}.<br/>
+    Has exoplanets?: {{ starData.haspossibleexoplanets }}<br/>
     My range: {{ range }}<br/>
-    Standard deviation: {{ starData.stdDev }}<br/>
-    Points: {{ starData.simplifiedPoints }}
+    Standard deviation: {{ starData.std }}<br/>
+    Points: {{ starData.simplified }}
   </div>
 </template>
 
@@ -20,9 +20,6 @@ export default {
       std: Number,
       simplified: Array
     },
-  },
-  mounted() {
-    console.log(this.$props);
   },
   computed: {
     range: function() {
