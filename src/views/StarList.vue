@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Stars</h1>
+    <h1>StarList</h1>
     <StarDisplay
       v-if="gotData"
       v-bind:starData="starData[0]"
@@ -12,7 +12,7 @@
 import StarDisplay from "../components/StarDisplay";
 
 export default {
-  name: "Stars",
+  name: "StarList",
   components: {
     StarDisplay
   },
