@@ -1,8 +1,10 @@
 <template>
   <v-layout row wrap @click="expand = !expand">
-    <v-flex xs2>{{ starData.starid }}</v-flex>
-    <v-flex xs10>Simplified graph goes here</v-flex>
-    <v-flex shrink>
+    <v-flex text-xs-center xs2>{{ starData.starid }}</v-flex>
+    <v-flex xs10>
+      Graph goes here
+    </v-flex>
+    <v-flex shrink xs10 offset-xs2>
       <v-expand-transition>
         <div v-show="expand">
           Stats go here
