@@ -1,13 +1,15 @@
 <template>
-  <v-layout row wrap @click="expand = !expand">
+  <v-layout row wrap @click="showStats">
     <v-flex text-xs-center xs2>{{ starData.starid }}</v-flex>
-    <v-flex xs10 ref="graph">
+    <v-flex xs10 ref="graph" fluid fill-height>
       <trend
         v-if="hasGraphEl"
-        :data="starData.simplified"
-        :gradient="['#6fa8dc', '#42b983', '#2c3e50']"
-        :width="graphEl.clientWidth"
-        :height="graphEl.clientHeight"
+        :data="starData.simplifiedfluxpoints"
+        :gradient="['#23074d', '#cc5333']"
+        :width="graphWidth"
+        :height="graphHeight"
+        :min="starData.min"
+        :max="starData.max"
         auto-draw
         smooth
       ></trend>
@@ -31,21 +33,38 @@ export default {
       max: Number,
       std: Number,
       range: Number,
-      simplified: Array
+      simplifiedfluxpoints: Array
     }
   },
   mounted() {
-    this.graphEl = this.$refs.graph;
+    this.$nextTick(() => {
+      this.windowWidth = window.innerWidth;
+      this.updateGraphDim();
+    });
   },
   data() {
     return {
-      graphEl: null,
-      expand: false
+      graphWidth: 0,
+      graphHeight: 0,
+      expand: false,
+      windowWidth: 0,
     };
   },
   computed: {
     hasGraphEl: function() {
-      return this.graphEl !== null
+      return this.$refs.graph !== null;
+    }
+  },
+  methods: {
+    updateGraphDim: function() {
+      if (this.windowWidth !== window.innerWidth) {
+        this.graphWidth = this.$refs.graph.clientWidth;
+        this.graphHeight = this.$refs.graph.clientHeight;
+        this.windowWidth = window.innerWidth;
+      }
+    },
+    showStats: function() {
+      this.expand = !this.expand;
     }
   }
 };
