@@ -9,6 +9,7 @@
     "prod": "npm run build && node server/app.js"
   },
   "dependencies": {
+    "apexcharts": "^3.6.5",
     "connect-history-api-fallback": "^1.6.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
