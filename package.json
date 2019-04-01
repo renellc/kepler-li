@@ -9,13 +9,15 @@
     "prod": "npm run build && node server/app.js"
   },
   "dependencies": {
-    "apexcharts": "^3.6.5",
+    "chart.js": "^2.8.0",
     "connect-history-api-fallback": "^1.6.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "vue": "^2.6.6",
+    "vue-chartjs": "^3.4.2",
     "vue-router": "^3.0.1",
-    "vuetify": "^1.5.5"
+    "vuetify": "^1.5.5",
+    "vuetrend": "^0.3.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",

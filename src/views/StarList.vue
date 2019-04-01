@@ -92,7 +92,7 @@ export default {
   methods: {
     getStarData: function() {
       fetch(
-        "http://localhost:4000/api/stars?sort=" +
+        "https://api-keplerli.herokuapp.com/api/stars?sort=" +
           this.sortBy +
           "&offset=" +
           this.dataOffset,
