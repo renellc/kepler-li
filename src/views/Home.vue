@@ -36,24 +36,36 @@ export default {
   }
 }
 
+@keyframes slowmoveup {
+  from {
+    bottom: -0.5em;
+  }
+  to {
+    bottom: 0em;
+  }
+}
+
 h1 {
+  position: relative;
   font-size: 350%;
   font-weight: 300;
   margin-bottom: 0.5em;
-  animation: fadein 1.5s;
+  animation: fadein 1.5s forwards, slowmoveup 1.5s forwards;
 }
 p {
+  position: relative;
   opacity: 0;
   line-height: 2em;
   margin-bottom: 1.5em;
-  animation: fadein 1.5s forwards;
+  animation: fadein 1.5s forwards, slowmoveup 1.5s forwards;
   animation-delay: 0.5s;
 }
 
 .home-button {
+  position: relative;
   opacity: 0;
   animation: fadein 1.5s forwards;
-  animation-delay: 1.0s;
+  animation-delay: 1.05s;
 }
 </style>
 
