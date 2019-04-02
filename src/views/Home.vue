@@ -7,7 +7,7 @@
           Observe the fluctuating light intensity for hundreds of stars in the effort to find
           exoplanets outside of our solar system.
         </p>
-        <v-btn color="primary" class="home-button">Begin</v-btn>
+        <v-btn color="primary" class="home-button" @click="pushPage('/stars')">Begin</v-btn>
       </v-flex>
     </v-layout>
   </v-container>
