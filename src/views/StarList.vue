@@ -47,7 +47,17 @@
       </v-flex>
 
       <v-fab-transition>
-        <v-btn v-show="showFab" color="pink" class="back-to-top-fab" @click="scrollToTop" dark fixed bottom right fab>
+        <v-btn
+          v-show="showFab"
+          color="pink"
+          class="back-to-top-fab"
+          @click="scrollToTop"
+          dark
+          fixed
+          bottom
+          right
+          fab
+        >
           <v-icon>keyboard_arrow_up</v-icon>
         </v-btn>
       </v-fab-transition>
@@ -130,16 +140,16 @@ export default {
       this.starData = [];
     },
     updateShowFab: function() {
-      return (
-        window.innerHeight + window.pageYOffset >
-        window.innerHeight * 1.5
-      );
+      return window.innerHeight + window.pageYOffset > window.innerHeight * 1.5;
     },
     scrollToTop: function() {
       window.scrollTo({
         top: 0,
         left: 0,
-        behavior: window.innerHeight + window.pageYOffset < window.innerHeight * 3 ? 'smooth' : 'auto',
+        behavior:
+          window.innerHeight + window.pageYOffset < window.innerHeight * 3
+            ? "smooth"
+            : "auto"
       });
     }
   }

@@ -16,7 +16,25 @@
     </v-flex>
     <v-flex shrink xs10 offset-xs2>
       <v-expand-transition>
-        <div v-show="expand">Stats go here</div>
+        <v-layout v-show="expand" row text-xs-center>
+          <v-flex xs3>
+            <b><u>Range</u></b><br/>
+            {{ starData.range }}
+          </v-flex>
+          <v-flex xs3>
+            <b><u>Std. Deviation</u></b><br/>
+            {{ starData.stddeviation }}
+          </v-flex>
+          <v-flex xs3>
+            <b><u>Planets?</u></b><br/>
+            {{ starData.haspossibleexoplanets ? 'Yes' : 'No' }}
+          </v-flex>
+          <v-flex xs4>
+            <v-btn color="primary" @click="goToStarPage">
+              See full
+            </v-btn>
+          </v-flex>
+        </v-layout>
       </v-expand-transition>
     </v-flex>
   </v-layout>
@@ -31,7 +49,7 @@ export default {
       haspossibleexoplanets: Boolean,
       min: Number,
       max: Number,
-      std: Number,
+      stddeviation: Number,
       range: Number,
       simplifiedfluxpoints: Array
     }
@@ -47,7 +65,7 @@ export default {
       graphWidth: 0,
       graphHeight: 0,
       expand: false,
-      windowWidth: 0,
+      windowWidth: 0
     };
   },
   computed: {
@@ -65,6 +83,9 @@ export default {
     },
     showStats: function() {
       this.expand = !this.expand;
+    },
+    goToStarPage: function() {
+      console.log('clicked');
     }
   }
 };
