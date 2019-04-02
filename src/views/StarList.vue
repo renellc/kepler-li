@@ -12,7 +12,7 @@
 
           <v-list>
             <!-- Each option within the filter options menu. Each option is binded to a click event
-            that changes the sorting of the stars associated with the option. -->
+            that changes the sorting of the stars associated with the option.-->
             <v-list-tile
               v-for="(sortOption, i) in sortOptions"
               :key="i"
@@ -45,6 +45,12 @@
       <v-flex text-xs-center xs4>
         <v-btn color="primary" @click="getStarData" ref="loadStars">Load Next</v-btn>
       </v-flex>
+
+      <v-fab-transition>
+        <v-btn v-show="showFab" color="pink" class="back-to-top-fab" dark fixed bottom right fab>
+          <v-icon>keyboard_arrow_up</v-icon>
+        </v-btn>
+      </v-fab-transition>
     </v-layout>
   </v-container>
 </template>
@@ -59,7 +65,7 @@ export default {
   },
   data() {
     return {
-      /** 
+      /**
        * The array that will hold the stars' data in. Each object has the following schema:
        * {
        *   haspossibleexoplanets: boolean,
@@ -80,14 +86,19 @@ export default {
       gotData: false,
       windowWidth: window.innerWidth,
       dataOffset: 0,
+      showFab: false,
       sortBy: "starid"
     };
   },
   created() {
     this.getStarData();
   },
-  watch: {
-    $route: "getStarData"
+  mounted() {
+    this.$nextTick(() => {
+      window.addEventListener("scroll", () => {
+        this.showFab = this.updateShowFab();
+      });
+    });
   },
   methods: {
     getStarData: function() {
@@ -117,7 +128,20 @@ export default {
       this.dataOffset = 0;
       this.gotData = false;
       this.starData = [];
+    },
+    updateShowFab: function() {
+      return (
+        window.innerHeight + window.pageYOffset >
+        window.innerHeight * 1.5
+      );
     }
   }
 };
 </script>
+
+<style scoped>
+.back-to-top-fab {
+  margin-right: 1em;
+  margin-bottom: 0.5em;
+}
+</style>
