@@ -1,10 +1,7 @@
 <template>
   <v-container>
     <v-layout column justify-space-around align-center fill-height>
-      <v-flex xs12 text-xs-center tag="h1">
-        About
-      </v-flex>
-
+      <v-flex xs12 text-xs-center tag="h1">About</v-flex>
       <v-flex xs6 text-xs-center wrap tag="p">
         KeplerLI is a small web application that allows you to view a given star's fluctuating
         light intensity over a certain period of time. These fluctuations are particularly
@@ -40,7 +37,8 @@ h1 {
   font-weight: 300;
 }
 p {
-  line-height: 2.0em;
+  line-height: 2em;
+  transition-delay: 0.5s;
 }
 </style>
 
