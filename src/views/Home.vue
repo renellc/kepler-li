@@ -38,10 +38,10 @@ export default {
 
 @keyframes slowmoveup {
   from {
-    bottom: -0.5em;
+    transform: translateY(0.5em);
   }
   to {
-    bottom: 0em;
+    transform: translateY(0em);
   }
 }
 

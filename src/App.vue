@@ -23,7 +23,7 @@ export default {
 <style>
 @keyframes fadein {
   from {
-    transform: translateY(1em);
+    transform: translateY(1.5em);
     opacity: 0;
   }
   to {
@@ -38,7 +38,7 @@ export default {
     opacity: 1;
   }
   to {
-    transform: translateY(-1em);
+    transform: translateY(-1.5em);
     opacity: 0;
   }
 }
