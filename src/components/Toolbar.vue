@@ -1,38 +1,40 @@
 <template>
-  <v-toolbar>
-    <v-toolbar-title 
-      id="title" 
-      class="headline text-uppercase" 
-      @mouseover="mouseOver()" 
-      @click="pushPage('/')"
-    >
-      <span>Kepler</span>
-      <span class="font-weight-light">li</span>
-    </v-toolbar-title>
+  <div>
+    <v-toolbar>
+      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-title
+        id="title"
+        class="headline text-uppercase"
+        @mouseover="mouseOver()"
+        @click="pushPage('/')"
+      >
+        <span>Kepler</span>
+        <span class="font-weight-light">li</span>
+      </v-toolbar-title>
+    </v-toolbar>
 
-    <v-spacer></v-spacer>
+    <v-navigation-drawer v-model="drawer" absolute temporary>
+      <v-list class="pa-1">
+        <v-list-tile>
+          <v-list-tile-title>
+            KeplerLI
+          </v-list-tile-title>
+        </v-list-tile>
+      </v-list>
 
-    <v-toolbar-items>
-      <template v-if="windowDim.width >= 425">
-        <v-btn flat @click="pushPage('/about')">
-          <v-icon>info</v-icon>&nbsp;About
-        </v-btn>
-        <v-btn flat>
-          <v-icon>link</v-icon>&nbsp;Links
-        </v-btn>
-      </template>
-
-      <template v-else>
-        <v-btn icon flat @click="pushPage('/about')">
-          <v-icon>info</v-icon>
-        </v-btn>
-        <v-btn icon flat>
-          <v-icon>link</v-icon>
-        </v-btn>
-      </template>
-
-    </v-toolbar-items>
-  </v-toolbar>
+      <v-list class="pt-0" dense>
+        <v-divider></v-divider>
+        <v-list-tile v-for="item in navList" :key="item.title" @click="pushPage(item.path)">
+          <v-list-tile-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            {{ item.title }}
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+  </div>
 </template>
 
 <script>
@@ -46,7 +48,13 @@ export default {
         width: window.innerWidth,
         height: window.innerHeight
       },
-      hovering: false
+      navList: [
+        { title: 'Stars', icon: 'star', path: '/stars' },
+        { title: 'About', icon: 'info', path: '/about' },
+        { title: 'Links', icon: 'link', path: '/links' },
+      ],
+      hovering: false,
+      drawer: null
     };
   },
   mounted() {
@@ -65,7 +73,9 @@ export default {
     },
     mouseOver: function() {
       this.hovering = true;
-      document.getElementById('title').style.cursor = this.hovering ? "pointer" : "default";
+      document.getElementById("title").style.cursor = this.hovering
+        ? "pointer"
+        : "default";
     }
   }
 };

@@ -5,7 +5,8 @@
       <v-flex text-xs-right xs4>
         <v-menu transition="slide-y-transition">
           <template v-slot:activator="{ on }">
-            <v-btn flat icon v-on="on">
+            <v-btn flat v-on="on">
+              Sort 
               <v-icon>filter_list</v-icon>
             </v-btn>
           </template>

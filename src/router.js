@@ -5,6 +5,7 @@ import StarList from './views/StarList.vue';
 import Star from './views/Star.vue';
 import About from './views/About.vue';
 import NotFound from './views/NotFound.vue';
+import Links from './views/Links.vue';
 
 Vue.use(Router);
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: About,
+    },
+    {
+      path: '/links',
+      name: 'links',
+      component: Links,
     },
     {
       path: '/error',
