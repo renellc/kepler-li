@@ -1,53 +1,55 @@
 <template>
   <v-container>
     <div v-if="!loaded" class="progress-circle">
-    <v-progress-circular v-if="!loaded" indeterminate color="primary"></v-progress-circular>
+      <v-progress-circular v-if="!loaded" indeterminate color="primary"></v-progress-circular>
     </div>
-    <v-layout v-else column>
-      <v-flex xs12>
-        <line-chart :chartdata="chartdata" :options="chartoptions"/>
-      </v-flex>
+    <v-fade-transition>
+      <v-layout v-show="loaded" column hide-on-leave="true">
+        <v-flex xs12>
+          <line-chart :chartdata="chartdata" :options="chartoptions"/>
+        </v-flex>
 
-      <v-flex xs12 text-xs-center>
-        <v-layout row wrap text-xs-center>
-          <v-flex xs4>
-            Range:
-            <br>
-            {{ starData.range }}
-          </v-flex>
-          <v-flex xs4>
-            Lowest Light Intensity:
-            <br>
-            {{ starData.min }}
-          </v-flex>
-          <v-flex xs4>
-            Highest Light Intensity:
-            <br>
-            {{ starData.max }}
-          </v-flex>
-        </v-layout>
-      </v-flex>
+        <v-flex xs12 text-xs-center>
+          <v-layout row wrap text-xs-center>
+            <v-flex xs4>
+              Range:
+              <br>
+              {{ starData.range }}
+            </v-flex>
+            <v-flex xs4>
+              Lowest Light Intensity:
+              <br>
+              {{ starData.min }}
+            </v-flex>
+            <v-flex xs4>
+              Highest Light Intensity:
+              <br>
+              {{ starData.max }}
+            </v-flex>
+          </v-layout>
+        </v-flex>
 
-      <v-flex xs12 text-xs-center style="marginTop: 3em;">
-        <v-layout row wrap text-xs-center>
-          <v-flex xs4>
-            Standard Deviation:
-            <br>
-            {{ starData.stddeviation }}
-          </v-flex>
-          <v-flex xs4>
-            Has Possible Exoplanets?:
-            <br>
-            {{ starData.haspossibleexoplanets }}
-          </v-flex>
-          <v-flex xs4>
-            Mean:
-            <br>
-            {{ starData.mean }}
-          </v-flex>
-        </v-layout>
-      </v-flex>
-    </v-layout>
+        <v-flex xs12 text-xs-center style="marginTop: 3em;">
+          <v-layout row wrap text-xs-center>
+            <v-flex xs4>
+              Standard Deviation:
+              <br>
+              {{ starData.stddeviation }}
+            </v-flex>
+            <v-flex xs4>
+              Has Possible Exoplanets?:
+              <br>
+              {{ starData.haspossibleexoplanets }}
+            </v-flex>
+            <v-flex xs4>
+              Mean:
+              <br>
+              {{ starData.mean }}
+            </v-flex>
+          </v-layout>
+        </v-flex>
+      </v-layout>
+    </v-fade-transition>
   </v-container>
 </template>
 
@@ -130,7 +132,9 @@ export default {
           for (let i = 0; i < this.starData.fluxpoints.length; i++) {
             sum += this.starData.fluxpoints[i];
           }
-          this.starData.mean = (sum / this.starData.fluxpoints.length).toFixed(3);
+          this.starData.mean = (sum / this.starData.fluxpoints.length).toFixed(
+            3
+          );
           this.loaded = true;
         })
         .catch(fetchErr => {
