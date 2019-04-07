@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import Router from "../router.js";
+
 export default {
   name: "StarDisplay",
   props: {
@@ -85,7 +87,7 @@ export default {
       this.expand = !this.expand;
     },
     goToStarPage: function() {
-      console.log('clicked');
+      Router.push('/stars/' + this.starData.starid);
     }
   }
 };
