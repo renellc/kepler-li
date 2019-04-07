@@ -6,13 +6,15 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "start": "npm run build && node server/app.js"
+    "postinstall": "npm run build",
+    "start": "node server/app.js"
   },
   "dependencies": {
     "chart.js": "^2.8.0",
     "connect-history-api-fallback": "^1.6.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "serve-static": "^1.13.2",
     "vue": "^2.6.6",
     "vue-chartjs": "^3.4.2",
     "vue-router": "^3.0.1",
