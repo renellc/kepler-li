@@ -50,4 +50,13 @@ export default {
 .router-fade-leave-active {
   animation: fadeout 0.5s ease-out;
 }
+
+.progress-circle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
 </style>

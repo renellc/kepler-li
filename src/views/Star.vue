@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div v-if="!loaded" class="center-screen">
+    <div v-if="!loaded" class="progress-circle">
     <v-progress-circular v-if="!loaded" indeterminate color="primary"></v-progress-circular>
     </div>
     <v-layout v-else column>
@@ -142,12 +142,4 @@ export default {
 </script>
 
 <style>
-.center-screen {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 100vh;
-}
 </style>

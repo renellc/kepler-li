@@ -1,6 +1,9 @@
 <template>
   <v-container grid-list-md>
-    <v-layout v-resize="onWindowResize" column>
+    <div v-if="!gotData" class="progress-circle">
+      <v-progress-circular indeterminate color="primary"></v-progress-circular>
+    </div>
+    <v-layout v-else v-resize="onWindowResize" column>
       <!-- The filter options menu -->
       <v-flex text-xs-right xs4>
         <v-menu transition="slide-y-transition">
@@ -144,6 +147,7 @@ export default {
       this.dataOffset = 0;
       this.gotData = false;
       this.starData = [];
+      this.getStarData();
     },
     updateShowFab: function() {
       return window.innerHeight + window.pageYOffset > window.innerHeight * 1.5;
