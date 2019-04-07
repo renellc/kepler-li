@@ -1,8 +1,11 @@
 <template>
   <v-container>
+    <!-- Show the animated loading spinner if data hasn't loaded yet. -->
     <div v-if="!loaded" class="progress-circle">
       <v-progress-circular v-if="!loaded" indeterminate color="primary"></v-progress-circular>
     </div>
+
+    <!-- Fades in the chart for the star's light intensity, with it's statistics below. -->
     <v-fade-transition>
       <v-layout v-show="loaded" column hide-on-leave="true">
         <v-flex xs12>
@@ -29,6 +32,7 @@
           </v-layout>
         </v-flex>
 
+        <!-- Creates a small space between the two rows -->
         <v-flex xs12 text-xs-center style="marginTop: 3em;">
           <v-layout row wrap text-xs-center>
             <v-flex xs4>
@@ -66,8 +70,11 @@ export default {
     return {
       loaded: false,
       starData: null,
+      /**
+       * The chart data object that is needed for the Line chart component for vue-chartjs.
+       */
       chartdata: {
-        labels: [...Array(3194).keys()],
+        labels: [...Array(3194).keys()], // Creates an array of numbers from 0 to 3194.
         datasets: [
           {
             labelt: "Light Intensity",
@@ -76,6 +83,9 @@ export default {
           }
         ]
       },
+      /**
+       * The styling options for the chart.
+       */
       chartoptions: {
         responsive: true,
         maintainAspectRatio: false,
@@ -94,6 +104,7 @@ export default {
           yAxes: [
             {
               display: true,
+              // The following sets the minimum and maximum points that will be shown on the chart.
               ticks: {
                 min: 0,
                 max: 0
@@ -108,6 +119,9 @@ export default {
     this.fetchStar();
   },
   methods: {
+    /**
+     * Gets the data for an individual star.
+     */
     fetchStar: function() {
       fetch(
         `https://api-keplerli.herokuapp.com/api/stars/${
@@ -122,7 +136,6 @@ export default {
           }
         })
         .then(data => {
-          console.log(data);
           this.starData = data;
           this.chartdata.datasets[0].data = this.starData.fluxpoints;
           this.chartoptions.scales.yAxes[0].ticks.min = this.starData.min - 50;

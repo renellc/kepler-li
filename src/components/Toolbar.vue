@@ -1,7 +1,11 @@
 <template>
   <div>
     <v-toolbar>
-      <v-toolbar-side-icon v-if="windowDim.width < 768" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <!-- Only show the hamburger menu if we are on smaller screen devices. -->
+      <v-toolbar-side-icon 
+        v-if="windowDim.width < 768" 
+        @click.stop="drawer = !drawer">
+      </v-toolbar-side-icon>
       <v-toolbar-title
         id="title"
         class="headline text-uppercase"
@@ -11,9 +15,10 @@
         <span>Kepler</span>
         <span class="font-weight-light">li</span>
       </v-toolbar-title>
-      
+
       <v-spacer></v-spacer>
 
+      <!-- Only show these if we are on larger screen devices. -->
       <div v-if="windowDim.width >= 768">
         <v-toolbar-items>
           <v-btn flat @click="pushPage('/about')">
@@ -26,6 +31,7 @@
       </div>
     </v-toolbar>
 
+    <!-- This is the items found in the hamburger menu (only shown on smaller screen devices). -->
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list class="pa-1">
         <v-list-tile>
@@ -80,6 +86,9 @@ export default {
     pushPage: function(path) {
       Router.push(path);
     },
+    /**
+     * Changes the cursor style when hovering over the toolbar title.
+     */
     mouseOver: function() {
       this.hovering = true;
       document.getElementById("title").style.cursor = this.hovering

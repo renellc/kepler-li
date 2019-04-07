@@ -49,7 +49,8 @@
       <v-flex text-xs-center xs4>
         <v-btn color="primary" @click="getStarData" ref="loadStars">Load Next</v-btn>
       </v-flex>
-
+    
+      <!-- Button that takes user back to the top of the page. -->
       <v-fab-transition>
         <v-btn
           v-show="showFab"
