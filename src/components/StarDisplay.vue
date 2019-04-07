@@ -17,21 +17,9 @@
     <v-flex shrink xs10 offset-xs2>
       <v-expand-transition>
         <v-layout v-show="expand" row text-xs-center>
-          <v-flex xs3>
-            <b><u>Range</u></b><br/>
-            {{ starData.range }}
-          </v-flex>
-          <v-flex xs3>
-            <b><u>Std. Deviation</u></b><br/>
-            {{ starData.stddeviation }}
-          </v-flex>
-          <v-flex xs3>
-            <b><u>Planets?</u></b><br/>
-            {{ starData.haspossibleexoplanets ? 'Yes' : 'No' }}
-          </v-flex>
-          <v-flex xs4>
+          <v-flex xs12>
             <v-btn color="primary" @click="goToStarPage">
-              See full
+              See more
             </v-btn>
           </v-flex>
         </v-layout>
@@ -41,8 +29,6 @@
 </template>
 
 <script>
-import Router from "../router.js";
-
 export default {
   name: "StarDisplay",
   props: {
@@ -87,7 +73,7 @@ export default {
       this.expand = !this.expand;
     },
     goToStarPage: function() {
-      Router.push('/stars/' + this.starData.starid);
+      window.open(window.location.href + '/' + this.starData.starid, '__blank');
     }
   }
 };
