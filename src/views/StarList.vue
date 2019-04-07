@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import Router from "../router.js";
 import StarDisplay from "../components/StarDisplay";
 
 export default {
@@ -123,7 +124,11 @@ export default {
         }
       )
         .then(response => {
-          return response.json();
+          if (response.status === 404) {
+            Router.push("/error");
+          } else {
+            return response.json();
+          }
         })
         .then(data => {
           this.starData.push(...data);
@@ -147,10 +152,7 @@ export default {
       window.scrollTo({
         top: 0,
         left: 0,
-        behavior:
-          window.innerHeight + window.pageYOffset < window.innerHeight * 3
-            ? "smooth"
-            : "auto"
+        behavior: "smooth",
       });
     }
   }
