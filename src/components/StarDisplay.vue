@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import Router from "../router.js";
+
 export default {
   name: "StarDisplay",
   props: {
@@ -73,7 +75,8 @@ export default {
       this.expand = !this.expand;
     },
     goToStarPage: function() {
-      window.open(window.location.href + '/' + this.starData.starid, '__blank');
+      let route = Router.resolve('/stars/' + this.starData.starid);
+      window.open(route.href, '_blank');
     }
   }
 };
