@@ -1,16 +1,50 @@
 <template>
   <v-container>
-    <v-layout column>
+    <div v-if="!loaded" class="center-screen">
+    <v-progress-circular v-if="!loaded" indeterminate color="primary"></v-progress-circular>
+    </div>
+    <v-layout v-else column>
       <v-flex xs12>
-        <line-chart v-if="loaded" :chartdata="chartdata" :options="chartoptions"/>
+        <line-chart :chartdata="chartdata" :options="chartoptions"/>
       </v-flex>
 
       <v-flex xs12 text-xs-center>
-        <v-layout row text-xs-center>
-          <v-flex xs3>Range:<br/>{{ starData.range }}</v-flex>
-          <v-flex xs3>Standard Deviation:<br/>{{ starData.stddeviation }}</v-flex>
-          <v-flex xs3>Has Possible Exoplanets?:<br/>{{ starData.haspossibleexoplanets }}</v-flex>
-          <v-flex xs3>Mean:<br/>{{ starData.mean }}</v-flex>
+        <v-layout row wrap text-xs-center>
+          <v-flex xs4>
+            Range:
+            <br>
+            {{ starData.range }}
+          </v-flex>
+          <v-flex xs4>
+            Lowest Light Intensity:
+            <br>
+            {{ starData.min }}
+          </v-flex>
+          <v-flex xs4>
+            Highest Light Intensity:
+            <br>
+            {{ starData.max }}
+          </v-flex>
+        </v-layout>
+      </v-flex>
+
+      <v-flex xs12 text-xs-center style="marginTop: 3em;">
+        <v-layout row wrap text-xs-center>
+          <v-flex xs4>
+            Standard Deviation:
+            <br>
+            {{ starData.stddeviation }}
+          </v-flex>
+          <v-flex xs4>
+            Has Possible Exoplanets?:
+            <br>
+            {{ starData.haspossibleexoplanets }}
+          </v-flex>
+          <v-flex xs4>
+            Mean:
+            <br>
+            {{ starData.mean }}
+          </v-flex>
         </v-layout>
       </v-flex>
     </v-layout>
@@ -44,10 +78,10 @@ export default {
         responsive: true,
         maintainAspectRatio: false,
         legend: {
-          display: false,
+          display: false
         },
         tooltips: {
-          enabled: false,
+          enabled: false
         },
         scales: {
           xAxes: [
@@ -96,7 +130,7 @@ export default {
           for (let i = 0; i < this.starData.fluxpoints.length; i++) {
             sum += this.starData.fluxpoints[i];
           }
-          this.starData.mean = sum / this.starData.fluxpoints.length;
+          this.starData.mean = (sum / this.starData.fluxpoints.length).toFixed(3);
           this.loaded = true;
         })
         .catch(fetchErr => {
@@ -108,4 +142,12 @@ export default {
 </script>
 
 <style>
+.center-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
 </style>
