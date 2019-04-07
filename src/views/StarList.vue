@@ -6,7 +6,7 @@
         <v-menu transition="slide-y-transition">
           <template v-slot:activator="{ on }">
             <v-btn flat v-on="on">
-              Sort 
+              Sort &nbsp;&nbsp;&nbsp;
               <v-icon>filter_list</v-icon>
             </v-btn>
           </template>

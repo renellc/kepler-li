@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-side-icon v-if="windowDim.width < 768" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title
         id="title"
         class="headline text-uppercase"
@@ -11,14 +11,25 @@
         <span>Kepler</span>
         <span class="font-weight-light">li</span>
       </v-toolbar-title>
+      
+      <v-spacer></v-spacer>
+
+      <div v-if="windowDim.width >= 768">
+        <v-toolbar-items>
+          <v-btn flat @click="pushPage('/about')">
+            <v-icon>info</v-icon>&nbsp;About
+          </v-btn>
+          <v-btn flat @click="pushPage('/links')">
+            <v-icon>link</v-icon>&nbsp;Links
+          </v-btn>
+        </v-toolbar-items>
+      </div>
     </v-toolbar>
 
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list class="pa-1">
         <v-list-tile>
-          <v-list-tile-title>
-            KeplerLI
-          </v-list-tile-title>
+          <v-list-tile-title>KeplerLI</v-list-tile-title>
         </v-list-tile>
       </v-list>
 
@@ -28,9 +39,7 @@
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
-          <v-list-tile-content>
-            {{ item.title }}
-          </v-list-tile-content>
+          <v-list-tile-content>{{ item.title }}</v-list-tile-content>
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
@@ -49,9 +58,9 @@ export default {
         height: window.innerHeight
       },
       navList: [
-        { title: 'Stars', icon: 'star', path: '/stars' },
-        { title: 'About', icon: 'info', path: '/about' },
-        { title: 'Links', icon: 'link', path: '/links' },
+        { title: "Stars", icon: "star", path: "/stars" },
+        { title: "About", icon: "info", path: "/about" },
+        { title: "Links", icon: "link", path: "/links" }
       ],
       hovering: false,
       drawer: null
