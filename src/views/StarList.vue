@@ -9,7 +9,7 @@
         <v-menu transition="slide-y-transition">
           <template v-slot:activator="{ on }">
             <v-btn flat v-on="on">
-              Sort &nbsp;&nbsp;&nbsp;
+              Sorting by: {{ sortByTitle }} &nbsp;&nbsp;&nbsp;
               <v-icon>filter_list</v-icon>
             </v-btn>
           </template>
@@ -20,7 +20,7 @@
             <v-list-tile
               v-for="(sortOption, i) in sortOptions"
               :key="i"
-              @click="changeSortBy(sortOption.option)"
+              @click="changeSortBy(sortOption)"
             >
               <v-list-tile-title>{{ sortOption.title }}</v-list-tile-title>
             </v-list-tile>
@@ -103,7 +103,8 @@ export default {
       windowWidth: window.innerWidth,
       dataOffset: 0,
       showFab: false,
-      sortBy: "starid"
+      sortBy: "starid",
+      sortByTitle: "Default"
     };
   },
   created() {
@@ -144,7 +145,8 @@ export default {
       this.windowWidth = window.innerWidth;
     },
     changeSortBy: function(sortBy) {
-      this.sortBy = sortBy;
+      this.sortBy = sortBy.option;
+      this.sortByTitle = sortBy.title;
       this.dataOffset = 0;
       this.gotData = false;
       this.starData = [];
