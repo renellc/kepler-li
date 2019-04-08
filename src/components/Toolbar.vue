@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar color="primary">
+    <v-toolbar color="primary" class="white--text">
       <!-- Only show the hamburger menu if we are on smaller screen devices. -->
       <v-toolbar-side-icon 
         v-if="windowDim.width < 768" 
@@ -21,10 +21,10 @@
       <!-- Only show these if we are on larger screen devices. -->
       <div v-if="windowDim.width >= 768">
         <v-toolbar-items>
-          <v-btn flat @click="pushPage('/about')">
+          <v-btn flat @click="pushPage('/about')" class="white--text">
             <v-icon>info</v-icon>&nbsp;About
           </v-btn>
-          <v-btn flat @click="pushPage('/links')">
+          <v-btn flat @click="pushPage('/links')" class="white--text">
             <v-icon>link</v-icon>&nbsp;Links
           </v-btn>
         </v-toolbar-items>
