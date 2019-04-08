@@ -11,13 +11,15 @@
         light intensity might indicate that one or more exoplanets might be orbiting the star.
         Though this is not conclusive evidence that a star has planets orbiting it, it can
         reveal certain characteristics that match those of already discovered exoplanets, helping
-        us refine the way we search for exoplanets.
+        us refine the way we search for exoplanets. Note that the dataset used on this site only
+        uses the test dataset which contains the data for 500 stars.
       </v-flex>
       <v-flex xs6 text-xs-center wrap tag="p">
         The data found in this dataset were derived from the observations made by the Kepler
         Space Telescope and neatly organized by user WΔ on Kaggle. This web application only
-        displays a small portion of the full dataset that was organized by WΔ. The link to the
-        Kaggle page containing the full dataset can be found in the links page.
+        displays a small portion of the full dataset (that contains data for 5000+ stars) that was
+        organized by WΔ. The link to the Kaggle page containing the full dataset can be found in
+        the links page.
       </v-flex>
     </v-layout>
   </v-container>
