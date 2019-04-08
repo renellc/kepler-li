@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar color="primary" class="white--text">
+    <v-toolbar color="primary" class="white--text" dark>
       <!-- Only show the hamburger menu if we are on smaller screen devices. -->
       <v-toolbar-side-icon 
         v-if="windowDim.width < 768" 
